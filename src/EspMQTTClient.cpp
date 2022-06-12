@@ -585,7 +585,8 @@ bool EspMQTTClient::connectToMqttBroker()
         Serial.printf("MQTT: Connecting to broker \"%s\" with client name \"%s\" ... (%fs)", _mqttServerIp, _mqttClientName, millis()/1000.0);
     }
 
-    const char* mqtt_ip = MDNS.queryHost(_mqttServerIp).toString().c_str();
+    IPAddress mqtt_ip = MDNS.queryHost(_mqttServerIp);
+
     // explicitly set the server/port here in case they were not provided in the constructor
     _mqttClient.setServer(mqtt_ip, _mqttServerPort);
     success = _mqttClient.connect(_mqttClientName, _mqttUsername, _mqttPassword, _mqttLastWillTopic, 0, _mqttLastWillRetain, _mqttLastWillMessage, _mqttCleanSession);
