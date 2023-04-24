@@ -156,6 +156,11 @@ void EspMQTTClient::enableLastWillMessage(const char* topic, const char* message
   _mqttLastWillRetain = retain;
 }
 
+void EspMQTTClient::enableLastWillMessage(const String &topic, const String &message, const bool retain)
+{
+  enableLastWillMessage(topic, message, retain);
+}
+
 
 // =============== Main loop / connection state handling =================
 
