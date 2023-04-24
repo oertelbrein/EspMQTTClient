@@ -158,7 +158,10 @@ void EspMQTTClient::enableLastWillMessage(const char* topic, const char* message
 
 void EspMQTTClient::enableLastWillMessage(const String &topic, const String &message, const bool retain)
 {
-  enableLastWillMessage(topic, message, retain);
+  //enableLastWillMessage(topic, message, retain); --> BAD idea
+  _mqttLastWillTopic = (char*)topic.c_str();
+  _mqttLastWillMessage = (char*)message.c_str();
+  _mqttLastWillRetain = retain;
 }
 
 
